@@ -1,0 +1,40 @@
+# tasks file for nfs-client
+---
+- name: install dependencies
+  apt:
+    name: "{{ nfs_client_dependencies }}"
+    state: "{{ apt_install_state | default('latest') }}"
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  tags:
+    - configuration
+    - nfs-client
+    - nfs-client-install
+    - nfs-client-install-dependencies
+
+- name: stat configuration file(s) directories
+  stat:
+    path: "{{ item }}/"
+  register: _stat_directories
+  with_items:
+    - "{{ nfs_client_etc_default_nfs_common_file | dirname }}"
+    - "{{ nfs_client_etc_default_nfs_kernel_server_file | dirname }}"
+    - "{{ nfs_client_lockd_file | dirname }}"
+  tags:
+    - configuration
+    - nfs-client
+    - nfs-client-configuration
+
+- name: create configuration file(s) directories
+  file:
+    path: "{{ item.item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items: "{{ _stat_directories.results }}"
+  when: not item.stat.exists
+  tags:
+    - configuration
+    - nfs-client
+    - nfs-client-configuration

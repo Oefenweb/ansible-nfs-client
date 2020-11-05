@@ -1,0 +1,7 @@
+# test file for nfs-client
+---
+- hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - ../../

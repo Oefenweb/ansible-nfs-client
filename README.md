@@ -39,7 +39,7 @@ None
     nfs_client_mounts:
       - src: 192.168.1.10:/home
         path: /home
- ``
+ ```
 
 #### License
 

@@ -1,0 +1,24 @@
+# tasks file for nfs-client
+---
+- name: install dependencies
+  apt:
+    name: "{{ nfs_client_dependencies }}"
+    state: "{{ apt_install_state | default('latest') }}"
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  tags:
+    - configuration
+    - nfs-client
+    - nfs-client-install
+    - nfs-client-install-dependencies
+
+- name: mount share
+  mount:
+    src: "{{ item.src }}"
+    path: "{{ item.path }}"
+    state: "{{ item.state | default('mounted') }}"
+    fstype: "{{ item.fstype | default('nfs') }}"
+    opts: "{{ item.opts | default(omit) }}"
+    dump: "{{ item.dump | default(omit) }}"
+    passno: "{{ item.passno | default(omit) }}"
+  with_items: "{{ nfs_client_mounts }}"

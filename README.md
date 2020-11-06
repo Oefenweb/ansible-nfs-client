@@ -11,8 +11,14 @@ None
 
 #### Variables
 
-* `nfs_client_mounts`: [default: `[]`]: Keys to generate locally
-* `nfs_client_mounts.{n}.path`: [required] The local path where the key should be generated
+* `nfs_client_mounts`: [default: `[]`]: Shares to mount
+* `nfs_client_mounts.{n}.src`: [required]: The remote path to the share (e.g. `192.168.1.10:/home`)
+* `nfs_client_mounts.{n}.path`: [required]: The local path where the share should be mounted (e.g. `/home`)
+* `nfs_client_mounts.{n}.state`: [default: `'mounted'`]: State
+* `nfs_client_mounts.{n}.fstype`: [default: `'nfs'`]: Filesystem type (e.g. `nfs4`)
+* `nfs_client_mounts.{n}.opts`: [optional]: Mount options, see `fstab(5)`
+* `nfs_client_mounts.{n}.dump`: [optional]: Dump, see `fstab(5)`
+* `nfs_client_mounts.{n}.passno`: [optional]: Passno, see `fstab(5)`
 
 ## Dependencies
 

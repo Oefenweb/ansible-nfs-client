@@ -12,29 +12,13 @@
     - nfs-client-install
     - nfs-client-install-dependencies
 
-- name: stat configuration file(s) directories
-  stat:
-    path: "{{ item }}/"
-  register: _stat_directories
-  with_items:
-    - "{{ nfs_client_etc_default_nfs_common_file | dirname }}"
-    - "{{ nfs_client_etc_default_nfs_kernel_server_file | dirname }}"
-    - "{{ nfs_client_lockd_file | dirname }}"
-  tags:
-    - configuration
-    - nfs-client
-    - nfs-client-configuration
-
-- name: create configuration file(s) directories
-  file:
-    path: "{{ item.item }}"
-    state: directory
-    owner: root
-    group: root
-    mode: 0755
-  with_items: "{{ _stat_directories.results }}"
-  when: not item.stat.exists
-  tags:
-    - configuration
-    - nfs-client
-    - nfs-client-configuration
+- name: mount share
+  mount:
+    src: "{{ item.src }}"
+    path: "{{ item.path }}"
+    state: "{{ item.state | default('mounted') }}"
+    fstype: "{{ item.fstype | default('nfs') }}"
+    opts: "{{ item.opts | default(omit) }}"
+    dump: "{{ item.dump | default(omit) }}"
+    passno: "{{ item.passno | default(omit) }}"
+  with_items: "{{ nfs_client_mounts }}"

@@ -11,11 +11,16 @@ None
 
 #### Variables
 
-* `nfs_client_exports`: [see: `defaults/main.yml`]: List of lines to be added to `/etc/exports`
+* `nfs_client_mounts`: [default: `[]`]: Keys to generate locally
+* `nfs_client_mounts.{n}.path`: [required] The local path where the key should be generated
 
 ## Dependencies
 
 None
+
+## Recommended
+
+* `ansible-nfs-server` ([see](https://github.com/Oefenweb/ansible-nfs-server))
 
 #### Example
 
@@ -24,6 +29,10 @@ None
 - hosts: all
   roles:
     - nfs-client
+  vars:
+    nfs_client_mounts:
+      - src: 192.168.1.10:/home
+        path: /home
  ``
 
 #### License

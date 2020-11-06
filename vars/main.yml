@@ -2,10 +2,3 @@
 ---
 nfs_client_dependencies:
   - nfs-common
-  - nfs-kernel-server
-
-nfs_client_etc_default_nfs_common_file: /etc/default/nfs-common
-nfs_client_etc_default_nfs_kernel_server_file: /etc/default/nfs-kernel-server
-nfs_client_lockd_file: /etc/modprobe.d/lockd.conf
-
-nfs_client_exports_file: /etc/exports

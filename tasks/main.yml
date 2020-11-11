@@ -12,7 +12,7 @@
     - nfs-client-install
     - nfs-client-install-dependencies
 
-- name: mount share
+- name: mount shares
   mount:
     src: "{{ item.src }}"
     path: "{{ item.path }}"
@@ -22,3 +22,8 @@
     dump: "{{ item.dump | default(omit) }}"
     passno: "{{ item.passno | default(omit) }}"
   with_items: "{{ nfs_client_mounts }}"
+  tags:
+    - configuration
+    - nfs-client
+    - nfs-client-mount
+    - nfs-client-mount-shares

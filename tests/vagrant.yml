@@ -1,4 +1,4 @@
-# test file for nfs-client
+# test file
 ---
 - hosts: all
   remote_user: vagrant

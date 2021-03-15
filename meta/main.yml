@@ -1,6 +1,7 @@
-# meta file for nfs-client
+# meta file
 ---
 galaxy_info:
+  namespace: oefenweb
   role_name: nfs-client
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.

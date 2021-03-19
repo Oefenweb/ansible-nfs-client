@@ -1,7 +1,7 @@
 ## nfs-client
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-nfs-client.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-nfs-client)
-[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-nfs--client-blue.svg)](https://galaxy.ansible.com/Oefenweb/nfs-client/)
+[![CI](https://github.com/Oefenweb/ansible-nfs-client/workflows/CI/badge.svg)](https://github.com/Oefenweb/ansible-nfs-client/actions?query=workflow%3ACI)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-nfs--client-blue.svg)](https://galaxy.ansible.com/Oefenweb/nfs_client/)
 
 Set up NFS in Debian-like systems (client side)
 

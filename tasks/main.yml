@@ -1,7 +1,7 @@
 # tasks file
 ---
 - name: install dependencies
-  apt:
+  ansible.builtin.apt:
     name: "{{ nfs_client_dependencies }}"
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
@@ -13,7 +13,7 @@
     - nfs-client-install-dependencies
 
 - name: mount shares
-  mount:
+  ansible.posix.mount:
     src: "{{ item.src }}"
     path: "{{ item.path }}"
     state: "{{ item.state | default('mounted') }}"

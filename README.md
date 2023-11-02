@@ -34,7 +34,7 @@ None
 ---
 - hosts: all
   roles:
-    - nfs-client
+    - oefenweb.nfs-client
   vars:
     nfs_client_mounts:
       - src: 192.168.1.10:/home
